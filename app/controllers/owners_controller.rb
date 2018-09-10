@@ -26,8 +26,4 @@ class OwnersController < ApplicationController
     @owner = Owner.find(params[:id])
     erb :'/owners/show'
   end
-
-  patch '/owners/:id' do
-    puts "Worked"
-  end
 end
