@@ -4,6 +4,7 @@ class ApplicationController < Sinatra::Base
   set :views, Proc.new { File.join(root, "../views/") }
 
   patch '/owners/:id' do
+      @owner = Owner.find(params[:id])
       ####### bug fix
       if !params[:owner].keys.include?("pet_ids")
       params[:owner]["pet_ids"] = []
