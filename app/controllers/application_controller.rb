@@ -17,4 +17,13 @@ class ApplicationController < Sinatra::Base
       end
       redirect "owners/#{@owner.id}"
   end
+
+  patch '/pets/:id' do
+    @pet = Pet.find(params[:id])
+    @pet.update(params["pet"])
+    if !params["owner"]["name"].empty?
+      Owner.create(name: params["owner"]["name"]).pets << @pet
+    end
+    redirect to "pets/#{@pet.id}"
+  end
 end
